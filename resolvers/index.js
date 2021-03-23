@@ -6,7 +6,7 @@ module.exports = {
     // All three resolver functions do use the third positional argument (context). Specifically, they destructure it to access the dataSources we defined.
     // None of the resolver functions includes the fourth positional argument (info), because they don't use it and there's no other need to include it.
 
-    captains: (_, __, { dataSources }) => 
+    captains: (_, __, { dataSources }) =>
       dataSources.captainsAPI.getAllCaptains(),
     captainById: (_, { id }, { dataSources }) =>
       dataSources.captainsAPI.getCaptainById(id)
@@ -22,6 +22,8 @@ module.exports = {
     // },
     addCaptain: async (_, { captain }, { dataSources }) =>
       dataSources.captainsAPI.addCaptain(captain),
+    updateCaptain: async (_, { captain }, { dataSources }) =>
+      dataSources.captainsAPI.updateCaptain(captain),
     deleteCaptain: async (_, { captain }, { dataSources }) =>
       dataSources.captainsAPI.deleteCaptain(captain)
   }

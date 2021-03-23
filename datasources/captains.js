@@ -27,22 +27,12 @@ class CaptainsAPI extends RESTDataSource {
   }
 
   captainsReducer(captain) {
-    console.log("captain reducer datasource ", { captain });
+    // console.log("captain reducer datasource ", { captain });
     return {
       id: captain.id || 0,
       name: captain.name,
       onDate: captain.onDate,
       already: captain.already
-    };
-  }
-
-  captainAddReducer(captain) {
-    // console.log("captain add reducer datasource ", { captain });
-
-    return {
-      id: captain.id || 0,
-      name: captain.name,
-      message: captain.message
     };
   }
 
@@ -53,10 +43,37 @@ class CaptainsAPI extends RESTDataSource {
     return this.captainAddReducer(response);
   }
 
+
+  captainAddReducer(captain) {
+    // console.log("captain add reducer datasource ", { captain });
+    return {
+      id: captain.id || 0,
+      name: captain.name,
+      message: captain.message
+    };
+  }
+
+  
+  async updateCaptain({ id, name, onDate, already }) {
+    console.log({ id, name, onDate, already })
+    const response = await this.post("captains/update", { id, name, onDate, already });
+    console.log('captainUpdateReducer response =>>> ', response)
+    return this.captainUpdateReducer(response);
+  }
+
+  captainUpdateReducer(captain) {
+    // console.log("captain update reducer datasource ", { captain });
+    return {
+      id: captain.id || 0,
+      name: captain.name,
+      message: captain.message
+    };
+  }
+
   async deleteCaptain({ id }) {
     console.log({ id });
     const response = await this.post("captains/delete", { id });
-    console.log("response =>>> ", response);
+    // console.log("response =>>> ", response);
     return response;
   }
 }

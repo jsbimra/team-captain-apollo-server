@@ -13,14 +13,28 @@ const typeDefs = gql`
   type AddCaptainReturn {
     id: ID!
     name: String
+    message: String
   }
-
 
   # Input type for add new captain
   input AddCaptain {
     name: String
     onDate: String
     already: Boolean!
+  }
+  
+  # Input type for add new captain
+  input UpdateCaptain {
+    id: ID!
+    name: String
+    onDate: String
+    already: Boolean!
+  }
+  
+  type UpdateCaptainReturn {
+    id: ID!
+    name: String
+    message: String
   }
 
   # Input type for delete captain
@@ -40,7 +54,8 @@ const typeDefs = gql`
 
   type Mutation {
     addCaptain(captain: AddCaptain!): AddCaptainReturn!
-    deleteCaptain(captain: DeleteCaptain!) : DeleteCaptainReturn!
+    updateCaptain(captain: UpdateCaptain!): UpdateCaptainReturn!
+    deleteCaptain(captain: DeleteCaptain!) : DeleteCaptainReturn
   }
 `;
 
