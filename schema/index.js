@@ -33,6 +33,7 @@ const typeDefs = gql`
     name: String
     onDate: String
     already: Boolean
+    description: String
   }
 
   # Input type for upload image
@@ -46,7 +47,7 @@ const typeDefs = gql`
     id: ID!
   }
 
-  type UploadImageInputPayload {
+  type UploadImageReturn {
     success: Boolean
     message: String
     photo: String
@@ -54,8 +55,11 @@ const typeDefs = gql`
 
   type UpdateCaptainReturn {
     id: ID!
-    name: String
     message: String
+    name: String
+    onDate: String
+    already: Boolean
+    description: String
   }
 
   type DeleteCaptainReturn {
@@ -69,7 +73,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    uploadCaptainImage(input: UploadImageInput!): UploadImageInputPayload
+    uploadCaptainImage(uploadImage: UploadImageInput!): UploadImageReturn!
     addCaptain(captain: AddCaptain!): AddCaptainReturn!
     updateCaptain(captain: UpdateCaptain!): UpdateCaptainReturn!
     deleteCaptain(captain: DeleteCaptain!): DeleteCaptainReturn

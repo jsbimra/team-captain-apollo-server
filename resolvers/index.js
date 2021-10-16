@@ -23,11 +23,9 @@ module.exports = {
     //     return user;
     //   }
     // },
-    uploadCaptainImage: async (
-      _,
-      { input: { ...uploadImage } },
-      { dataSources }
-    ) => dataSources.dsAPI.uploadImage(uploadImage),
+    uploadCaptainImage: async (_, { uploadImage }, { dataSources }) => {
+      return dataSources.captainsAPI.uploadCaptainImage(uploadImage);
+    },
     addCaptain: async (_, { captain }, { dataSources }) =>
       dataSources.captainsAPI.addCaptain(captain),
     updateCaptain: async (_, { captain }, { dataSources }) =>

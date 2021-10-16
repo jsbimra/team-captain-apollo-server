@@ -35,17 +35,22 @@ class CaptainsAPI extends RESTDataSource {
     };
   }
 
-  async uploadImage(uploadImage) {
-    console.log("uploadImage", { uploadImage });
+  async uploadCaptainImage(uploadImage) {
+    // console.log("uploadCaptainImage", { id: uploadImage.id });
     try {
-      const response = await this.post("upload-image", {
-        ...uploadImage
-      });
-      console.log({ uploadImage: response });
-      return {
-        ...response
-      };
+      const response = await this.post("upload-image", uploadImage);
+      // console.log({ response });
+      if (response && response.data) {
+        return {
+          ...response.data
+        };
+      } else {
+        return {
+          ...response
+        };
+      }
     } catch (error) {
+      console.log(error);
       console.error(new Error(error));
       return {
         ...error
@@ -69,23 +74,27 @@ class CaptainsAPI extends RESTDataSource {
     };
   }
 
-  async updateCaptain({ id, name, onDate, already }) {
-    console.log("update captain call", { id, name, onDate, already });
+  async updateCaptain(captain) {
+    console.log("update captain call", captain);
 
     try {
       const response = await this.post(
-        `captains/update.php?q=${new Date().getTime()}`,
-        {
-          id,
-          name,
-          onDate,
-          already
-        }
+        `captains/update/?q=${new Date().getTime()}`,
+        captain
       );
-      // console.log("captainUpdateReducer response =>>> ", response);
-      return this.captainUpdateReducer(response);
-    } catch (err) {
-      console.log(err);
+
+      console.log({ response });
+      if (response && response.data) {
+        return this.captainUpdateReducer(response.data);
+      } else {
+        return this.captainUpdateReducer(response);
+      }
+    } catch (error) {
+      console.log(error);
+      console.error(new Error(error));
+      return {
+        ...error
+      };
     }
   }
 

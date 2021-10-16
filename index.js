@@ -1,5 +1,5 @@
 const { ApolloServer } = require("apollo-server");
-const responseCachePlugin = require('apollo-server-plugin-response-cache');
+const responseCachePlugin = require("apollo-server-plugin-response-cache");
 
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
@@ -14,8 +14,8 @@ const server = new ApolloServer({
   }),
   cacheControl: {
     defaultMaxAge: 0,
-    defaultScope: 'PUBLIC'
-  },
+    defaultScope: "PUBLIC"
+  }
   // plugins: [responseCachePlugin({
   //   // sessionId: (requestContext) => (requestContext.request.http.headers.get('sessionid') || null),
   //   shouldReadFromCache:  (requestContext) => {
