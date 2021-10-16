@@ -1,6 +1,6 @@
 {
-  "name": "team-captain-apollo-server",
-  "description": "",
+  "name": "team-captain-apollo-server-be",
+  "description": "TO BE CHECK IF THIS CONNECTED WITH LIVE!",
   "dependencies": {
     "apollo-datasource-rest": "0.10.0",
     "apollo-server": "2.9.7",

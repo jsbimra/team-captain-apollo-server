@@ -14,15 +14,15 @@ const server = new ApolloServer({
   }),
   cacheControl: {
     defaultMaxAge: 0,
-    calculateHttpHeaders: false,
+    defaultScope: 'PUBLIC'
   },
-  plugins: [responseCachePlugin({
-    // sessionId: (requestContext) => (requestContext.request.http.headers.get('sessionid') || null),
-    shouldReadFromCache:  (requestContext) => {
-      console.log(requestContext)
-      return false;
-    }
-  })],
+  // plugins: [responseCachePlugin({
+  //   // sessionId: (requestContext) => (requestContext.request.http.headers.get('sessionid') || null),
+  //   shouldReadFromCache:  (requestContext) => {
+  //     // console.log(requestContext)
+  //     return false;
+  //   }
+  // })],
 });
 
 server.listen().then(({ url }) => {
